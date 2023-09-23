@@ -7,7 +7,7 @@ from . import views
 app_name = 'web'
 
 urlpatterns = [
-    path('',views.accueil, name='accueil' ),
+    path('',views.accueil, name='accueil'),
     #path('service',views.services, name='services'),
     #path('Apropos',views.Apropos, name='Apropos'),   
 ]

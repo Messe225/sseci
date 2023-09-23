@@ -5,254 +5,301 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title> {{title}} </title>
+  <title>Système de suivi des étudiants de Côte d'Ivoire</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!--permet de charger nos dossiers statics-->
-  {% load static %}
-
+   {% load static %} 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="{% static 'assets/img/logo.png' %} " rel="icon">
+  <link href="{% static 'assets/img/logo.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Satisfy" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href=" {% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %} " rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
   <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
   <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Laura
-  * Updated: Mar 10 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/laura-free-creative-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
+
 <body>
+  <div class="container">
+  <main id="main">
   
-  <main id="main" class="row bg-black opacity-75">
-
-    <!-- ======= Contact Me Section ======= -->
-    <section id="contact" class="contact"> 
+    <section id="contact" class="contact">
       <div class="container">
-
-        <div class="section-title">
-          <span class = "cont text-white">SSECI</span>
-          <h2 class = "cont1 text-white">SSECI</h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+        
+        <div  class="section-title ">
+          <span class="sseci text-white">SSECI</span>
+          <h2 class="sse_ci text-white">SSECI</h2>
+          <p class=" sseci h1 text-white">Système de suivi des étudiants de Côte d'Ivoire</p>
         </div>
 
-        <div class="row">
-
-          <div class="col-lg-12"> 
-          <form action="{% url 'web.accueil' %} enctype="multipart/form-data" method="post" role="form" class="php-email-form"> 
-            {% csrf_token %}
-            <input type="hidden" name="next_page" value="{% url 'web:accueil' %}">
+        <div  class="row  p-3 mb-2 testimonials">
+          <div class="col-lg-12 ">
+            <form action="{% url 'web:accueil' %}" enctype="multipart/form-data" method="post" role="form" class="php-email-form ">
+              {% csrf_token %}
+              <input type="hidden" name="next_page" value="{% url 'web:accueil' %}">
                   <div class="alert  alert-dismissible fade 
                     {% if message == 'success' %}
                       show alert-success
                     {% elif message == 'error' %}
                       show alert-danger
                     {% endif %}" 
-                    role="alert">
+                    role="alert"> 
                     {% if message == 'success' %}
                     <p class="text-center"><strong class="text-center text-success">Succès!</strong> Votre identification a été prise en compte ! </p>
                     {% elif message == 'error' %}
                     <p class="text-center"> <strong >Erreur !</strong> Veuillez corriger les erreurs ci-dessous !</p>
                     {% endif %}
-                  </div>
+                  </div> 
+              <div class="row">
+                <div class="col-md-4 form-group">
+                <p class="text-center fst-italic h5 "> <span class="badge text-white">Nom</span></p>
+                  {{form.name}}
+                  {% if form.name.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.name.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white">Prénoms</span> </p>
+                  {{form.prenom}}
+                  {% if form.prenom.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.prenom.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white">Sexe</span></p>
+                  {{form.sexe}}
+                  {% if form.sexe.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.sexe.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-4 form-group">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white">Lieu de naissance</span></p>
+                  {{form.lieu_de_naissance}}
+                  {% if form.lieu_de_naissance.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.lieu_de_naissance.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white">Date de naissance</span></p>
+                  {{form.date_de_naissance}}
+                  {% if form.date_de_naissance.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.date_de_naissance.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white">Email</span></p>
+                  {{form.email}}
+                  {% if form.email.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.email.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-4 form-group">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white">Téléphone</span></p>
+                  {{form.contact}}
+                  {% if form.contact.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.contact.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white">Matricule </span></p>
+                  {{form.matricule}}
+                  {% if form.matricule.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.matricule.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white">Numéro CNI </span></p>
+                  {{form.n_cni}}
+                  {% if form.n_cni.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.n_cni.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+              </div>
               
-            <div class="row mt-3">
-                
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic" > <span class="badge text-bg-warning">Nom</span> </p>
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" required>
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning">Prénoms</span> </p>
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Vos prénoms" required>
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Sexe </span> </p>
-                <select type="text" name="user_sexe" arial-label = "Default select example" class="form-select" id="sexe" required> 
-                <option selected> Selectioner votre sexe  </option> 
-                {% for s in sexe %}
-                     <option value= "{{s.id}}"> {{s.libelle}}  </option> 
-                     {% endfor %}
-                </select>
-              </div>
-            </div>
-
-            
-            <div class="row mt-3">  
+              <div class="row mt-3">
                 <div class="col-md-4 form-group">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Lieu de naissance </span> </p>
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Votre lieu de naissance" required>
+                  <p class="text-center fst-italic h5 text-white">  <span class="badge text-white"> Carte d'étudiant (pdf)</span></p>
+                  {{form.carte_etudiant}}
+                  {% if form.carte_etudiant.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.carte_etudiant.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
                 </div>
-
                 <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Date de naissance </span> </p>
-                  <input type="date" name="name" class="form-control" id="name" placeholder="Vos date de naissance" required>
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white"> Pièce d'identité (pdf)</span></p>
+                  {{form.carte_cni}}
+                  {% if form.carte_cni.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.carte_cni.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
                 </div>
-
                 <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Addresse mail </span></p>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Votre email" required>
+                  <p class="text-center fst-italic h5 text-white"><span class="badge text-white"> Université d'accueil</span></p>
+                  {{form.universite}}
+                  {% if form.universite.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.universite.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
                 </div>
-            </div>
-
-             <div class="row mt-3">
-                <div class="col-md-4 form-group">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Numéro de téléphone </span> </p>
-                  <input type="tel" name="name" class="form-control" id="name" placeholder="Votre numéro de téléphone" required>                    
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Numéro de carte étudiant </span> </p>
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Votre numéro d'étudiant" required>               
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> N° carte CNI </span> </p>
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Votre numéro CNI" required>                 
-                </div>
-             </div>
-
-             <div class="row mt-3"> 
-                <div class="col-md-4 form-group">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Copie de la carte d'étudiant </span></p>
-                  <input type="file" name="name" class="form-control" id="name" required>              
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic">  <span class="badge text-bg-warning"> Copie de carte CNI </span> </p>
-                  <input type="file" name="name" class="form-control" id="name" required>                
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Université d'accueil </span>  </p>
-                  <select type="text" name="user_sexe" arial-label = "Default select example" class="form-select" id="sexe" required> 
-                  <option selected> Selectioner votre université d'accueil </option> 
-                  {% for u in universite %}
-                     <option value= "{{u.id}}"> {{u.name}}  </option> 
-                     {% endfor %} </select>                
-                </div>
-             </div>
-
-             <div class="row mt-3"> 
-                <div class="col-md-4 form-group">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> UFR  </span>  </p>
-                  <select type="text" name="user_sexe" arial-label = "Default select example" class="form-select" id="sexe" required> 
-                  <option selected> Selectioner votre ufr </option> 
-                  <option value= "1"> Sciences Sociales  </option> 
-                  {% for uf in ufr %}
-                     <option value= "{{uf.id}}"> {{uf.name}}  </option> 
-                     {% endfor %} 
-                  </select>  
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Filière </span>  </p>
-                  <select type="text" name="user_sexe" arial-label = "Default select example" class="form-select" id="sexe" required> 
-                  <option selected> Selectioner votre filière </option> 
-                  <option value= "1"> Géographie  </option> 
-                  {% for fl in ufr %}
-                  <option value= "{{fl.id}}"> {{fl.name}}  </option> 
-                  {% endfor %} </select>
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Spécialité </span>  </p>
-                  <select type="text" name="user_sexe" arial-label = "Default select example" class="form-select" id="sexe" required> 
-                  <option selected> Selectioner votre spécialité  </option> 
-                  <option value= "1"> Migrations  </option> 
-                  {% for sp in specialite %}
-                  <option value= "{{sp.id}}"> {{sp.libelle}}  </option>
-                  {% endfor %}
-                </select>                 
-                 </div>
-             </div>
-
-             <div class="row mt-3">
-                <div class="col-md-4 form-group">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Niveau d'étude </span> </p>
-                  <select type="text" name="user_sexe" arial-label = "Default select example" class="form-select" id="sexe" required> 
-                  <option selected> Selectioner votre Niveau </option> 
-                  <option value= "1"> Licence 1  </option> 
-                  {% for niv in niveau %}
-                  <option value= "{{niv.id}}"> {{niv.libelle}}  </option>
-                  {% endfor %}
-                </select>                  
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Ville de résidence </span></p>
-                  <select type="text" name="user_sexe" arial-label = "Default select example" class="form-select" id="sexe" required> 
-                  <option selected> Selectioner votre ville de résidence </option> 
-                  <option value= "1"> Daloa  </option> 
-                  {% for vil in ville %}
-                  <option value= "{{vil.id}}"> {{vil.libelle}}  </option>
-                  {% endfor %}
-                 </select> 
-                </div>
-
-                <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-success fst-italic"> <span class="badge text-bg-warning"> Commune de résidence </span></p>
-                  <select type="text" name="user_sexe" arial-label = "Default select example" class="form-select" id="sexe" required> 
-                  <option selected> Selectioner votre commune de résidence </option> 
-                  <option value= "1"> Daloa  </option> 
-                  {% for co in commune %}
-                  <option value= "{{co.id}}"> {{co.libelle}}  </option>
-                  {% endfor %}
-                 </select>   
-                   </div>
-             </div>
-
-
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
 
-            <div class="text-center"> <button type="submit">Identifiez-vous</button> </div>
-            
-          </form>
-        </div>
+              <div class="row mt-3">
+                <div class="col-md-4 form-group">
+                  <p class="text-center fst-italic h5 text-white"><span class="badge text-white"> UFR</span></p>
+                  {{form.ufr}}
+                  {% if form.ufr.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.ufr.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white"> Filière</span></p>
+                  {{form.filiere}}
+                  {% if form.filiere.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.filiere.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white">  <span class="badge text-white"> Spécialité</span></p>
+                  {{form.specialite}}
+                  {% if form.specialite.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.specialite.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+              </div>
 
+              <div class="row mt-3">
+                <div class="col-md-4 form-group">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white"> Niveau d'étude</span></p>
+                  {{form.niveau}}
+                  {% if form.niveau.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.niveau.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white"> Ville de residence</span></p>
+                  {{form.ville}}
+                  {% if form.ville.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.ville.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <p class="text-center fst-italic h5 text-white"> <span class="badge text-white"> Commune de residence</span></p>
+                  {{form.commune}}
+                  {% if form.commune.errors %}
+                      <ul class="text-danger">
+                          {% for error in form.commune.errors %}
+                              <li>{{ error }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+                </div>
+              </div>
+             
+            <br>
+              <div class="text-center"><button type="submit" >Identifiez-vous!</button></div>
+            </form>
+          
+          </div>
         </div>
 
       </div>
-    </section>
-    <!-- End Contact Me Section -->
+    </section><!-- End Contact Me Section -->
 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-      <h3 class = "cont2 text-white">SSECI</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <h3 class="ss_eci">SSECI</h3>
+      <p class="sse_ci h1">Un système pour une et unique formation subventionnée par l'État ivoirien.</p>
       <div class="copyright">
-        &copy; Copyright <strong><span>SSECI</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>sseci</span></strong>. Tous les droits sont réservés
       </div>
       <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">Méssé</a>
+        Designed by <a href="https://www.linkedin.com/in/kouassi-r%C3%A9mi-gnamien-1441081b7/" target="_blank">RKG</a>
       </div>
     </div>
   </footer><!-- End Footer -->
-
+</div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -262,10 +309,11 @@
   <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
   <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
-  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <!--script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script-->
 
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
 </body>
 
 </html>
