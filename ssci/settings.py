@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'ssci.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'SSCI',
@@ -91,7 +91,7 @@ DATABASES = {
         'PASSWORD': 'ZQSD2023',
         'HOST': 'localhost',
     }
-}
+}"""
 
 #configuration de la BDD sur le server
 
